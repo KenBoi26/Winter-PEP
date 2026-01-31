@@ -20,8 +20,7 @@ int findFloor(vector<int>& arr, int x) {
 }
 
 int main(){
-    vector<int> arr = {1,2,8,10,11,12,19};
-    cout << findFloor(arr, 5) << '\n'; // expected 1 (value 2)
-    cout << findFloor(arr, 20) << '\n'; // expected 6 (value 19)
+    
+    
     return 0;
 }

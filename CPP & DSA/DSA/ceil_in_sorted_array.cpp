@@ -18,7 +18,7 @@ int findCeil(vector<int>& arr, int x) {
 
 int main(){
     vector<int> arr = {1,2,8,10,11,12,19};
-    cout << findCeil(arr, 5) << '\n'; // expected 2 (value 8)
-    cout << findCeil(arr, 0) << '\n'; // expected 0 (value 1)
+    cout << findCeil(arr, 5) << '\n';
+    cout << findCeil(arr, 0) << '\n';
     return 0;
 }

@@ -51,12 +51,11 @@ bool linearSearch(int arr[], int size, int key){
 }
 
 int linearSearchIndex(int arr[], int size, int key){
-    cout << arr[0] << " " << size << endl;
     if(arr[0] == key) return size;
     if(size == 0) return -1;
 
 
-    return linearSearch(arr+1, size-1, key);
+    return linearSearchIndex(arr+1, size-1, key);
 }
 
 int main(){

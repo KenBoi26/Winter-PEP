@@ -11,7 +11,7 @@ bool isFound(int arr[][4], int key, int rows){
     return false;
 }
 
-void wavePrint(int arr[4][4]){
+void wavePrintRow(int arr[4][4]){
     bool flag = false;
     for(int i=0; i<4; i++){
         flag = !flag;
@@ -23,6 +23,24 @@ void wavePrint(int arr[4][4]){
         }else{
             for(int  j=3; j>=0; j--){
                 cout << arr[j][i] << " ";
+            }
+        }
+        
+    }
+}
+
+void wavePrintColumn(int arr[4][4]){
+    bool flag = false;
+    for(int i=0; i<4; i++){
+        flag = !flag;
+        int sum = 0;
+        if(!flag){
+            for(int  j=0; j<4; j++){
+                cout << arr[i][j] << " ";
+            }
+        }else{
+            for(int  j=3; j>=0; j--){
+                cout << arr[i][j] << " ";
             }
         }
         
@@ -66,7 +84,9 @@ int main(){
     cout << "Max sum: " << max_sum << ", on index: " << index << endl;
     int arr1[4][4] = {{1,7,14,6},{11,15,5,10},{2,4,16,3},{9,13,8,12}};
 
-    wavePrint(arr1);
+    wavePrintRow(arr1);
+    cout << endl;
+    wavePrintColumn(arr1);
 
     
 

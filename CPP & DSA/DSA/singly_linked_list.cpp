@@ -42,16 +42,72 @@ void insertionAtStart(Node* &head, int key){
     head = newNode;
 }
 
-void print(Node* &head){
-    Node* temp = head;
-    while(temp != nullptr){
-        cout << temp->data << " ";
-        temp = temp->next;
+void insertionAtNthPosition(Node* &head, int position, int key){
+    
+    Node* newNode = new Node(key);
+    
+
+    if(position == 1){
+        newNode->next = head;
+        head = newNode;
+        return;
     }
 
-    cout << endl;
+    Node* temp = head;
+    int count = 1;
+
+    if(head == NULL){
+        head = newNode;
+        return;
+    }
+
+    while(count < position-1 && temp != NULL){
+        temp = temp->next;
+        count++;
+    }
+
+    if(temp == NULL) return;
+
+    newNode->next = temp->next;
+    temp->next = newNode;
+}
+
+void deleteLastNode(Node* &head){
+    if(head == nullptr) return;
+    
+    if(head->next == nullptr){
+		delete head;
+        head = nullptr;
+        return;
+	}
+
+    Node* temp = head;
+    while(temp->next->next != nullptr){
+        temp = temp->next;
+    }
+    delete temp->next;
+
+    temp->next = nullptr;
+}
+
+void deleteAtStart(Node* &head){
+    if(head == nullptr) return;
+
+    Node* temp = head;
+    head = head->next;
+    delete temp;
+}
+
+void print(Node* head){
+    while(head != nullptr){
+        cout << head->data << "->";
+        head = head->next;
+    }
+
+    cout << "NULL\n";
 
 }
+
 
 
 int main(){
@@ -64,7 +120,19 @@ int main(){
     insertionAtEnd(head, 2);
     print(head);
 
-    insertionAtStart(head, 0);
+    insertionAtStart(head, 3);
+    print(head);
+
+    insertionAtNthPosition(head, 2, 5);
+    print(head);
+
+    insertionAtNthPosition(head, 5, 6);
+    print(head);
+
+    deleteLastNode(head);
+    print(head);
+
+    deleteAtStart(head);
     print(head);
 
 

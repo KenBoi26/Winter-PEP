@@ -98,6 +98,29 @@ void deleteAtStart(Node* &head){
     delete temp;
 }
 
+void deleteAtNthNode(Node* &head, int position){
+    if(head == nullptr) return;
+
+    if(position == 1){
+        deleteAtStart(head);
+        return;
+    }
+
+    Node* temp = head;
+
+    while(position-1 > 1 && temp != nullptr){
+        position--;
+        temp = temp->next;
+    }
+
+    if(temp->next == nullptr || temp == nullptr) return;
+
+    Node* deleteNode = temp->next;
+
+    temp->next = temp->next->next;
+    delete deleteNode;
+}
+
 void print(Node* head){
     while(head != nullptr){
         cout << head->data << "->";
@@ -133,6 +156,9 @@ int main(){
     print(head);
 
     deleteAtStart(head);
+    print(head);
+
+    deleteAtNthNode(head, 3);
     print(head);
 
 

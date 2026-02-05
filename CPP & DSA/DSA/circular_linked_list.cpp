@@ -50,10 +50,82 @@ void insertAtStart(Node* &head, int val){
     }
 
     temp->next = head;
+}
 
+void deleteFirstNode(Node* &head){
+    if(head == nullptr) return;
+
+    if(head == head->next){
+        delete head;
+        head = nullptr;
+        return;
+    }
+
+    Node* temp = head;
+
+    while(temp->next != head){
+        temp = temp->next;
+    }
+
+    temp->next = temp->next->next;
+    delete head;
+    head = temp->next;
+}
+
+void deleteLastNode(Node* &head){
+    if(head == nullptr) return;
+
+    Node* temp = head;
+
+    if(head == temp->next){
+        delete temp;
+        head = nullptr;
+        return;
+    }
+
+    while(temp->next->next != head){
+        temp = temp->next;
+    }
+
+    Node* toDelete = temp->next;
+    temp->next = head;
+    delete toDelete;
+}
+
+void deleteAtNthPosition(Node* &head, int position){
+    if(head == nullptr) return;
+
+    if(position == 1){
+        deleteFirstNode(head);
+        return;
+    }
+
+    Node* temp = head;
+    while(position-1 > 1 && temp->next != head){
+        temp = temp->next;
+        position--;
+    }
+
+    if(temp->next == head && position-1 <= 1){
+        return;
+    }
+
+    if(temp->next == head){
+        deleteLastNode(head);
+        return;
+    }
+
+    Node* toDelete = temp->next;
+    temp->next = temp->next->next;
+    delete toDelete;
 }
 
 void printList(Node* head){
+    if(head == nullptr){
+        cout << "NULL" << endl;
+        return;
+    }
+    
     Node* start = head;
 
     while(head->next != start){
@@ -78,6 +150,15 @@ int main(){
     printList(head);
 
     insertAtStart(head, 5);
+    printList(head);
+
+    // deleteLastNode(head);
+    // printList(head);
+
+    // deleteFirstNode(head);
+    // printList(head);
+
+    deleteAtNthPosition(head, 4);
     printList(head);
 
 

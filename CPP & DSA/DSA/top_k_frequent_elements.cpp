@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> topKFrequent(vector<int>& nums, int k) {
+    unordered_map<int,int> mp;
+
+    for(auto i:nums){
+        mp[i] += 1;
+    }
+
+    priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+
+    for(auto i:mp){
+        pq.push({i.second, i.first});
+
+        if(pq.size() > k){
+            pq.pop();
+        }
+    }
+
+    vector<int> result;
+
+    while(!pq.empty()){
+        result.push_back(pq.top().second);
+        pq.pop();
+    }
+
+    return result;
+
+}
+
+int main(){
+
+
+    return 0;
+}
